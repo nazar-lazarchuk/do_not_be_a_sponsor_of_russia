@@ -24,6 +24,11 @@ npm i
 npm run start
 ```
 
+Also you can run database seed with fake data:
+```sh
+npm run db:seed
+```
+
 ## Development
 
 Want to contribute? Great!
