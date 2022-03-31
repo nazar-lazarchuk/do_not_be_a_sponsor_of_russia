@@ -1,25 +1,23 @@
 import { faker } from '@faker-js/faker';
-import seed from '../lib/db/seed';
+import db from '../lib/db';
 
 faker.locale = 'ru';
 
-const data = {
-    companies: {
-        rows: new Array(100).fill(null).map(() => faker.company.companyName()),
-        logs: [],
-    },
-    company_products: {
-        rows: new Array(2000)
-            .fill(null)
-            .map(() => faker.commerce.productName()),
-        logs: [],
-    },
-    users: {
-        rows: new Array(20).fill(null).map(() => faker.internet.userName()),
-        logs: [],
-    },
-};
+db.run('CREATE TABLE users(id INTEGER PRIMARY KEY, username)', (err) => {
+    if (err) return console.error(err);
 
-seed(data)
-    .then(() => console.log('success 🙌'))
-    .catch(() => console.log('error ⛔'));
+    db.run('INSERT INTO users(username) VALUES (?)', [faker.internet.userName()], (err) => {
+        if (err) return console.error(err);
+    });
+});
+
+db.run('CREATE TABLE companies(id INTEGER PRIMARY KEY, name)', (err) => {
+    if (err) return console.error(err);
+
+    db.run('INSERT INTO companies(name) VALUES (?)', [faker.company.companyName()], (err) => {
+        if (err) return console.error(err);
+    });
+});
+
+// db.run('DROP TABLE users');
+// db.run('DROP TABLE companies');

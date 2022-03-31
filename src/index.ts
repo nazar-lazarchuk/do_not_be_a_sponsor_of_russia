@@ -1,5 +1,3 @@
-import { connect } from '../lib/db';
+import db from '../lib/db';
 
-connect()
-    .then(() => console.log('database successfully connected 🙌'))
-    .catch(() => console.log('database connection error ⛔'));
+console.log(db);
