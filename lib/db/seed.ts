@@ -16,19 +16,19 @@ async function seed(data?: Seed) {
 
     for (const table of DB_TABLES) {
         const pathToTableFile = path.resolve(DB_PATH, `./${table}.json`);
-        const isInitialDataExists = !!data?.[table];
+        const isSeedExists = !!data?.[table];
 
-        if (!fs.existsSync(pathToTableFile) || isInitialDataExists) {
+        if (!fs.existsSync(pathToTableFile) || isSeedExists) {
             fs.writeFileSync(
                 pathToTableFile,
                 JSON.stringify(
-                    isInitialDataExists ? data[table] : initialTableData,
+                    isSeedExists ? data[table] : initialTableData,
                 ),
             );
 
             console.log(`table "${table}" was created!`);
 
-            if (isInitialDataExists) {
+            if (isSeedExists) {
                 console.log(`- ${data[table].rows.length} rows affected`);
             }
         }
