@@ -5,6 +5,7 @@
   "main": "src/index.ts",
   "scripts": {
     "start": "ts-node src",
+    "db:migrate": "ts-node ./bin/db_migrate",
     "db:seed": "ts-node ./bin/db_seed"
   },
   "author": "nazar-lazarchuk",
