@@ -7,26 +7,32 @@ It is currently under active development.
 - Parsing the Internet for up-to-date data
 - Moderation of information through the admin panel
 - Telegram Bot that will be created to:
--- search for and obtain brief information about any product or company
--- whether it works in Russia
--- whether this company ignore the aggression of the Russian Federation against Ukraine
--- data moderation by Telegram users
+    - search for brief information about any product or company (whether it works in Russia or whether this company ignore the aggression of the Russian Federation against Ukraine)
+    - data moderation by Telegram users
 - ✨Magic ✨
 
 ## Installation
 
-Requires [Node.js](https://nodejs.org/) v10+ to run.
+Requires [Node.js](https://nodejs.org/) v12+ to run.
 
-Install the dependencies and devDependencies and start the server.
-
+Install the dependencies and devDependencies:
 ```sh
 npm i
-npm run start
 ```
 
-Also you can run database seed with fake data:
+Create an empty file `database.db` in root folder and run SQLite migration:
+```sh
+npm run db:migrate
+```
+
+Also, you can seed some fake data into your local database (optional):
 ```sh
 npm run db:seed
+```
+
+Run the application:
+```sh
+npm start
 ```
 
 ## Development
