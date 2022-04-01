@@ -14,13 +14,13 @@ export interface IDatabaseModel<DTOType extends { id: number }> {
      * @returns id of new item
      */
     put(value: Omit<DTOType, 'id' | 'created_at' | 'updated_at'>): Promise<number | undefined>;
-    
+
     /**
      * Update exisiting table row
      * @returns id of updated item
      */
     update(value: Omit<DTOType, 'created_at' | 'updated_at'>): Promise<number | undefined>;
-    
+
     /**
      * Delete exisiting table row by id
      * @returns id of deleted item
