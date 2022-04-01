@@ -1,12 +1,8 @@
-import sqlite3Lib from 'sqlite3';
-import path from 'path';
+export { default as db } from './db';
+export { default } from './db';
 
-const sqlite3 = sqlite3Lib.verbose();
-const dbPath = path.resolve(__dirname, '../../database.db');
-const dbMode = sqlite3.OPEN_READWRITE;
+export { CompanyDbModel } from './models';
 
-const db = new sqlite3.Database(dbPath, dbMode, (err) => {
-    if (err) return console.error(err);
-});
+export { DbRowNotFoundError} from './errors';
 
-export default db;
+export type { ICompanyDTO } from './dto';
