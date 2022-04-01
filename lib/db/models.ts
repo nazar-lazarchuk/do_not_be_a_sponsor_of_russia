@@ -49,12 +49,14 @@ export const CompanyDbModel: IDatabaseModel<ICompanyDTO> = {
         ]);
     },
     async update(value) {
-        await baseDbRun(
+        const updatedId = await baseDbRun(
             'UPDATE companies SET name = ?, updated_at = CURRENT_TIMESTAMP WHERE id = ?',
             [value.name, value.id],
         );
+        if (!updatedId) throw new DbRowNotFoundError();
     },
     async delete(id) {
-        await baseDbRun('DELETE FROM companies WHERE id = ?', [id]);
+        const deletedId = await baseDbRun('DELETE FROM companies WHERE id = ?', [id]);
+        if (!deletedId) throw new DbRowNotFoundError();
     },
 };
