@@ -25,9 +25,14 @@ Create an empty file `database.db` in root folder and run SQLite migration:
 npm run db:migrate
 ```
 
-Also, you can seed some fake data into your local database:
+Also, you can seed some fake data into your local database (optional):
 ```sh
 npm run db:seed
+```
+
+Run the application:
+```sh
+npm start
 ```
 
 ## Development
