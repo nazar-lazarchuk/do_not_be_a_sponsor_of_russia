@@ -55,6 +55,17 @@ export function init(config: IBotConfiguration) {
 
         const companyId = +query.data;
         const company = await onGetCompany(companyId);
-        bot.sendMessage(query.message.chat.id, JSON.stringify(company));
+        if (!company) {
+            return bot.sendMessage(query.message.chat.id, 'Дані про компанію відсутні');
+        }
+
+        const formatedUpdated = new Date(company.updatedAt).toLocaleString(
+            query.from.language_code,
+        );
+
+        bot.sendMessage(
+            query.message.chat.id,
+            `Компанія "${company.name}";\nДата останніх змін ${formatedUpdated}`,
+        );
     });
 }
