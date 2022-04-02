@@ -20,11 +20,7 @@ export function init(config: IBotConfiguration) {
         const text = msg.text?.trim();
 
         if (!text) {
-            return bot.sendMessage(
-                msg.chat.id,
-                'Будь-ласка використовуйте синтаксис\n<b>/search</b> <i>назва_компанії_або_продукту</i>',
-                { parse_mode: 'HTML' },
-            );
+            return bot.sendMessage(msg.chat.id, 'Невалідний запит');
         }
 
         const searchMsg = await bot.sendMessage(msg.chat.id, 'Пошук в базі...');
@@ -47,7 +43,7 @@ export function init(config: IBotConfiguration) {
         });
     });
 
-    // On Company select
+    // on company select
     bot.on('callback_query', (query) => {
         console.log(query);
     });
