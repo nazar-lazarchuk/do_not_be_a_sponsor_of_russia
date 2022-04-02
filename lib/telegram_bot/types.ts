@@ -3,8 +3,15 @@ export interface ISearchResult {
     text: string;
 }
 
+export interface ICompany {
+    id: number;
+    name: string;
+    updatedAt: string;
+}
+
 export interface IBotConfiguration {
     token: string;
 
     onSearch(searchCriteria: string): Promise<ISearchResult[]>;
+    onGetCompany(id: number): Promise<ICompany | null>;
 }

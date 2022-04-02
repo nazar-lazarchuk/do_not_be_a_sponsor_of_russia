@@ -1,5 +1,5 @@
 import { CompanyDbModel } from '../../lib/db';
-import { ISearchResult } from '../../lib/telegram_bot';
+import { ISearchResult, ICompany } from '../../lib/telegram_bot';
 
 export const onSearch = async (searchCriteria: string): Promise<ISearchResult[]> => {
     // TODO: use "SQLite full text search" instead getting all companies
@@ -13,3 +13,13 @@ export const onSearch = async (searchCriteria: string): Promise<ISearchResult[]>
         text: company.name,
     }));
 };
+
+export const onGetCompany = async (id: number):Promise<ICompany | null> => {
+    const company = await CompanyDbModel.find(id);
+    if (!company) return null;
+    return {
+        id,
+        name: company.name,
+        updatedAt: company.updated_at,
+    };
+}

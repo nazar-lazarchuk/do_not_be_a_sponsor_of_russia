@@ -8,7 +8,7 @@ import TelegramBot from 'node-telegram-bot-api';
 import { IBotConfiguration } from './types';
 
 export function init(config: IBotConfiguration) {
-    const { token, onSearch } = config;
+    const { token, onSearch, onGetCompany } = config;
 
     const bot = new TelegramBot(token, { polling: true });
 
@@ -50,7 +50,11 @@ export function init(config: IBotConfiguration) {
     });
 
     // on company select
-    bot.on('callback_query', (query) => {
-        console.log(query);
+    bot.on('callback_query', async (query) => {
+        if (!query.data || !query.message) return;
+
+        const companyId = +query.data;
+        const company = await onGetCompany(companyId);
+        bot.sendMessage(query.message.chat.id, JSON.stringify(company));
     });
 }
