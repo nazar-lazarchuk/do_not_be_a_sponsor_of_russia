@@ -1,3 +1,9 @@
+/**
+ * deprecated "Automatic enabling of cancellation of promises is deprecated"
+ * https://github.com/yagop/node-telegram-bot-api/issues/540
+ */
+process.env.NTBA_FIX_319 = '1';
+
 import TelegramBot from 'node-telegram-bot-api';
 import { IBotConfiguration } from './types';
 
