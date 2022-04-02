@@ -1,5 +1,5 @@
 import { CompanyDbModel } from '../../lib/db';
-import { ISearchResult } from '../../lib/telegram_bot/types';
+import { ISearchResult } from '../../lib/telegram_bot';
 
 export const onSearch = async (searchCriteria: string): Promise<ISearchResult[]> => {
     // TODO: use "SQLite full text search" instead getting all companies
