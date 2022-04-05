@@ -6,6 +6,8 @@ export interface ISearchResult {
 export interface ICompany {
     id: number;
     name: string;
+    status: string;
+    statusDescription: string | null;
     updatedAt: string;
 }
 
