@@ -40,8 +40,10 @@ export const CompanyDbModel: IDatabaseModel<ICompanyDTO> = {
         return baseDbFind('SELECT * FROM companies WHERE id = ?', id);
     },
     put(value) {
-        return baseDbRun('INSERT INTO companies(name) VALUES (?)', [
+        return baseDbRun('INSERT INTO companies(name, status_code, status_description) VALUES (?, ?, ?)', [
             value.name,
+            value.status_code,
+            value.status_description,
         ]);
     },
     update(value) {
