@@ -6,6 +6,7 @@ process.env.NTBA_FIX_319 = '1';
 
 import TelegramBot from 'node-telegram-bot-api';
 import { IBotConfiguration } from './types';
+import { encodeToHtml } from './utils';
 
 export function init(config: IBotConfiguration) {
     const { token, onSearch, onGetCompany } = config;
@@ -65,7 +66,13 @@ export function init(config: IBotConfiguration) {
 
         bot.sendMessage(
             query.message.chat.id,
-            `Компанія "${company.name}";\nДата останніх змін ${formatedUpdated}`,
+            [
+                `Компанія <i>"${encodeToHtml(company.name)}"</i>;\n`,
+                `<b>${encodeToHtml(company.status)}</b>;\n`,
+                company.statusDescription ? `${encodeToHtml(company.statusDescription)};\n` : '',
+                `Дата останніх змін ${formatedUpdated};\n`,
+            ].join(''),
+            { parse_mode: 'HTML' },
         );
     });
 }
